@@ -1,0 +1,42 @@
+-- Create the database
+CREATE DATABASE YourDatabaseName;
+
+-- Use the database
+USE YourDatabaseName;
+
+-- Create the 'Matter' table
+CREATE TABLE Matter (
+    codemat INT PRIMARY KEY,
+    wording VARCHAR(255),
+    coef FLOAT
+);
+
+-- Create the 'Student' table
+CREATE TABLE Student (
+    numstud INT PRIMARY KEY,
+    name VARCHAR(255),
+    firsname VARCHAR(255),
+    dateofbirth DATE,
+    street VARCHAR(255),
+    postalcod VARCHAR(10),
+    city VARCHAR(255)
+);
+
+-- Create the 'Test' table
+CREATE TABLE Test (
+    numtest INT PRIMARY KEY,
+    testdate DATE,
+    place INT,
+    codemat INT,
+    FOREIGN KEY (codemat) REFERENCES Matter(codemat)
+);
+
+-- Create the 'Notation' table
+CREATE TABLE Notation (
+    numstud INT,
+    numtest INT,
+    score INT,
+    PRIMARY KEY (numstud, numtest),
+    FOREIGN KEY (numstud) REFERENCES Student(numstud),
+    FOREIGN KEY (numtest) REFERENCES Test(numtest)
+);

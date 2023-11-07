@@ -1,0 +1,47 @@
+-- Insert students
+INSERT INTO Student (numstud, name, firsname, dateofbirth, street, postalcod, city)
+VALUES
+    (1, 'Dupont', 'Alice', '1998-03-15', '123 Main St', '12345', 'Lyon'),
+    (2, 'Durand', 'Bob', '1999-05-20', '456 Elm St', '23456', 'Calais'),
+    (3, 'Martin', 'Charlie', '1997-11-10', '789 Oak St', '34567', 'Paris'),
+    (4, 'Smith', 'David', '2000-02-25', '101 Pine St', '45678', 'Marsella'),
+    (5, 'Johnson', 'Emma', '1996-08-05', '202 Cedar St', '56789', 'Bordeaux'),
+    (6, 'Brown', 'Frank', '1999-04-30', '303 Birch St', '67890', 'Lyon'),
+    (7, 'Wilson', 'Grace', '1997-09-12', '404 Maple St', '78901', 'Lila');
+
+-- Insert cities with 'LL' in their name
+INSERT INTO Student (numstud, name, firsname, dateofbirth, street, postalcod, city)
+VALUES
+    (8, 'CityLL1', 'John', '2000-03-01', '111 Elm St', '54321', 'LyonLL'),
+    (9, 'CityLL2', 'Jane', '1998-12-15', '222 Oak St', '65432', 'LilaLL');
+
+-- Insert subjects
+INSERT INTO Matter (codemat, wording, coef)
+VALUES
+    (1, 'Math', 2.0),
+    (2, 'Science', 1.5),
+    (3, 'History', 1.0);
+
+-- Insert tests with specific conditions
+-- 2 tests with different subjects and less than 6 students marked per test
+INSERT INTO Test (numtest, testdate, place, codemat)
+VALUES
+    (1, '2014-06-01', 1, 1),
+    (2, '2014-06-15', 2, 2);
+
+-- 5 tests with dates between 1/1/2014 and 30/6/2014
+INSERT INTO Test (numtest, testdate, place, codemat)
+VALUES
+    (3, '2014-01-05', 3, 1),
+    (4, '2014-02-10', 4, 2),
+    (5, '2014-04-20', 5, 3),
+    (6, '2014-05-15', 6, 1),
+    (7, '2014-06-30', 7, 2);
+
+-- Insert random marks with valid numtest and numstud values
+-- Generate 30 random marks for students and tests with valid numtest and numstud values
+INSERT INTO Notation (numstud, numtest, score)
+SELECT
+    FLOOR(RAND() * 7) + 1, FLOOR(RAND() * 7) + 1, FLOOR(RAND() * 20) + 1
+FROM dual
+LIMIT 30;
